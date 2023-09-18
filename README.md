@@ -42,6 +42,8 @@ For release of APK, open terminal from the root project, run following command.
 cd android && ./gradlew app:assembleRelease
 ```
 
+You will find apk under android->app->build->outputs->apk->release->app-release.apk
+
 ### For iOS
 
 For debug, open terminal from the root project, run following command.
