@@ -1,4 +1,4 @@
-import {StyleSheet, Platform} from 'react-native';
+import {StyleSheet, Platform, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'green',
     borderRadius: 6,
+    marginTop: 20,
   },
   startText: {
     fontSize: 14,
@@ -44,10 +45,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     marginHorizontal: 20,
+    height: Dimensions.get('window').height * 0.45,
   },
   video: {
     width: '90%',
     height: '90%',
+  },
+  url: {
+    borderWidth: 1,
+    height: 40,
+    borderRadius: 4,
+    width: '70%',
   },
 });
 

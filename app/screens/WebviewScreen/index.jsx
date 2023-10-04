@@ -10,7 +10,8 @@ import {WebView} from 'react-native-webview';
 import styles from './styles';
 import images from '../../assets/images';
 
-const WebviewScreen = ({navigation}) => {
+const WebviewScreen = ({navigation, route}) => {
+  const url = route.params.url;
   const onBack = () => {
     navigation.navigate('HomeScreen');
   };
@@ -22,7 +23,7 @@ const WebviewScreen = ({navigation}) => {
       </View>
       <View style={styles.webviewContainer}>
         <WebView
-          source={{uri: 'https://staffplus.grpsys.com/spwebcam.html'}}
+          source={{uri: url}}
           startInLoadingState={true}
           renderLoading={() => <ActivityIndicator />}
           mediaPlaybackRequiresUserAction={false}

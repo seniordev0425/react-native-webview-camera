@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -6,21 +6,27 @@ import {
   Image,
   TouchableOpacity,
   useWindowDimensions,
+  TextInput,
+  ScrollView,
+  KeyboardAvoidingView,
 } from 'react-native';
 import VideoPlayer from 'react-native-video-player';
 
 import styles from './styles';
 import images from '../../assets/images';
 import videos from '../../assets/videos';
+import {isValidHttpUrl} from './helper';
 
 const HomeScreen = ({navigation}) => {
   const {width} = useWindowDimensions();
+  const [url, setUrl] = useState('');
+
   const onStart = () => {
-    navigation.navigate('WebviewScreen');
+    navigation.navigate('WebviewScreen', {url});
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <StatusBar
         translucent={true}
         barStyle="dark-content"
@@ -41,14 +47,21 @@ const HomeScreen = ({navigation}) => {
       </View>
 
       <View style={styles.footer}>
+        <TextInput
+          value={url}
+          onChangeText={setUrl}
+          style={styles.url}
+          inputMode="url"
+        />
         <TouchableOpacity
-          style={styles.startBtn}
+          disabled={!isValidHttpUrl(url)}
+          style={{...styles.startBtn, opacity: isValidHttpUrl(url) ? 1 : 0.7}}
           activeOpacity={0.7}
           onPress={onStart}>
           <Text style={styles.startText}>Start</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
